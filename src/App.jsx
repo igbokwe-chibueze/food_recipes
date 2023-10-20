@@ -1,7 +1,13 @@
-import { curry, noodles, stew } from "./assets/images";
-import { about, burger, clock, contact, home } from "./assets/icons";
+import { recipes } from "./constants";
+import { Badges } from "./components"
+import { about, burger, close, contact, home } from "./assets/icons";
+
+import { useState } from 'react';
 
 const App = () => {
+
+  const [toggle, setToggle] = useState(false);
+
   return (
     <div>
       <div className="grid md:grid-cols-3">
@@ -12,10 +18,20 @@ const App = () => {
                 <a href="/" className="hover:text-gray-700 tracking-widest">Food Ninja</a>
               </h1>
               <div className="px-4 cursor-pointer md:hidden" id="burger">
-                <img className="w-5 ml-2" src={burger} alt="burger" />
+                <img 
+                  src={toggle ? close : burger} 
+                  alt="burger"
+                  className="w-5 ml-2"
+                  onClick={() => setToggle(!toggle)} 
+                />
               </div>
             </div>
-            <ul className="text-sm mt-6 hidden md:block" id="menu">
+            <ul 
+              className={`${
+                !toggle ? "hidden" : "block"
+              } text-sm mt-6 md:block`}
+              id="menu"
+            >
               <li className="text-gray-700 font-bold py-1">
                 <a href="#" className="px-4 flex justify-end border-r-4 border-primary">
                   <span>Home</span>
@@ -49,83 +65,24 @@ const App = () => {
             <h3 className="text-2xl font-semibold tracking-wider">For Ninjas</h3>
           </header>
 
+          {/* Recipes */}
           <div>
             <h4 className="font-bold pb-2 mt-12 border-b border-gray-200">Latest Recipes</h4>
       
             <div className="mt-8 grid lg:grid-cols-3 gap-10">
               {/* cards go here */}
-              <div className="card hover:shadow-lg">
-                <img src={stew} alt="stew" className="h-32 sm:h-48 w-full object-cover" />
-                <div className="m-4">
-                  <span className="font-bold">5 Bean Chili Stew</span>
-                  <span className="block text-gray-500 text-sm">Recipe by Mario</span>
-                </div>
-                <div className="badge">
-                  <img className="inline-block w-5" src={clock} alt="clock" />
-                  <span>25 mins</span>
-                </div>
-              </div>
-              <div className="card hover:shadow-lg"> 
-                <img src={noodles} alt="noodles" className="h-32 sm:h-48 w-full object-cover" />
-                <div className="m-4">
-                  <span className="font-bold">Veg Noodles</span>
-                  <span className="block text-gray-500 text-sm">Recipe by Mario</span>
-                </div>
-                <div className="badge">
-                  <img className="inline-block w-5" src={clock} alt="clock" />
-                  <span>25 mins</span>
-                </div>
-              </div>
-              <div className="card hover:shadow-lg"> 
-                <img src={curry} alt="curry" className="h-32 sm:h-48 w-full object-cover" />
-                <div className="m-4">
-                  <span className="font-bold">Tofu Curry</span>
-                  <span className="block text-gray-500 text-sm">Recipe by Mario</span>
-                </div>
-                <div className="badge">
-                  <img className="inline-block w-5" src={clock} alt="clock" />
-                  <span>25 mins</span>
-                </div>
-              </div>
+              {recipes.map((recipe) => (
+                <Badges key={recipe.food} {...recipe} />
+              ))}
             </div>
 
             <h4 className="font-bold pb-2 mt-12 border-b border-gray-200">Most Popular</h4>
 
             <div className="mt-8 grid lg:grid-cols-3 gap-10">
               {/* cards go here */}
-              <div className="card hover:shadow-lg"> 
-                <img src={stew} alt="stew" className="h-32 sm:h-48 w-full object-cover" />
-                <div className="m-4">
-                  <span className="font-bold truncate block">5 Bean Chili Stew with Feta Cheese</span>
-                  <span className="block text-gray-500 text-sm">Recipe by Mario</span>
-                </div>
-                <div className="badge">
-                  <img className="inline-block w-5" src={clock} alt="clock" />
-                  <span>25 mins</span>
-                </div>
-              </div>
-              <div className="card hover:shadow-lg"> 
-                <img src={noodles} alt="noodles" className="h-32 sm:h-48 w-full object-cover" />
-                <div className="m-4">
-                  <span className="font-bold">Veg Noodles</span>
-                  <span className="block text-gray-500 text-sm">Recipe by Mario</span>
-                </div>
-                <div className="badge">
-                  <img className="inline-block w-5" src={clock} alt="clock" />
-                  <span>25 mins</span>
-                </div>
-              </div>
-              <div className="card hover:shadow-lg"> 
-                <img src={curry} alt="curry" className="h-32 sm:h-48 w-full object-cover" />
-                <div className="m-4">
-                  <span className="font-bold">Tofu Curry</span>
-                  <span className="block text-gray-500 text-sm">Recipe by Mario</span>
-                </div>
-                <div className="badge">
-                  <img className="inline-block w-5" src={clock} alt="clock" />
-                  <span>25 mins</span>
-                </div>
-              </div>
+              {recipes.map((recipe) => (
+                <Badges key={recipe.food} {...recipe} />
+              ))}
             </div>
           </div>
 
