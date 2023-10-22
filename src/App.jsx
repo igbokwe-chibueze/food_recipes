@@ -5,7 +5,7 @@ import { useState } from 'react';  // Importing the 'useState' hook from React.
 
 // Define the App component as a functional component.
 const App = () => {
-  // Define a state variable 'toggle' and a function 'setToggle' to update it, initialized with 'false'.
+  // Define a state variable 'toggle' and a function 'setToggle' to update it, initialized with 'false'..
   const [toggle, setToggle] = useState(false);
 
   return (
