@@ -1,5 +1,5 @@
 import { recipes } from "./constants";  // Importing a constant variable 'recipes' from a file.
-import { Badges } from "./components";   // Importing a component 'Badges' from another file.
+import { Cards } from "./components";   // Importing a component 'Cards' from another file.
 import { about, burger, close, contact, home } from "./assets/icons";  // Importing various icons from a file.
 import { useState } from 'react';  // Importing the 'useState' hook from React.
 
@@ -75,7 +75,7 @@ const App = () => {
             <div className="mt-8 grid lg:grid-cols-3 gap-10">
               {/* Display cards for latest recipes */}
               {recipes.map((recipe) => (
-                <Badges key={recipe.food} {...recipe} />  // Pass recipe data as props to the 'Badges' component.
+                <Cards key={recipe.food} {...recipe} />  // Pass recipe data as props to the 'Cards' component.
               ))}
             </div>
 
@@ -84,7 +84,7 @@ const App = () => {
             <div className="mt-8 grid lg:grid-cols-3 gap-10">
               {/* Display cards for most popular recipes (same logic as above) */}
               {recipes.map((recipe) => (
-                <Badges key={recipe.food} {...recipe} />
+                <Cards key={recipe.food} {...recipe} />
               ))}
             </div>
           </div>

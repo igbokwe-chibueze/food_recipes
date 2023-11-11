@@ -1,5 +1,5 @@
-import Badges from "./Badges";
+import Cards from "./Cards";
 
 export {
-    Badges
+    Cards
 }
